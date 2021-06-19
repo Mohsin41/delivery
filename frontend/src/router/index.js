@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/home.vue'
 import Login from '../views/login.vue'
 import Register from '../views/register.vue'
+import AddProduct from '../views/addproduct.vue'
+
 Vue.use(VueRouter)
 
 export default function init(store) {
@@ -23,6 +25,12 @@ export default function init(store) {
         path: '/home',
         name: 'Home',
         component: Home,
+       
+      },
+      {
+        path: '/product',
+        name: 'addproduct',
+        component: AddProduct,
        
       },
       {
