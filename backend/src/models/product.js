@@ -3,6 +3,9 @@ const autopopulate = require('mongoose-autopopulate')
 
 const productSchema = new mongoose.Schema(
   {
+    image:{
+      type:String,
+    },
     name: {
       type: String,
       unique: true,
@@ -22,7 +25,7 @@ const productSchema = new mongoose.Schema(
 
 class Product{
   
-  async totalWeight(quantity) {
+  totalWeight(quantity) {
     return this.weight*quantity
   }
 
@@ -38,16 +41,26 @@ class Product{
     return false;
 }
 
-  getDeliveryDate(date) {
-    let deliveryDate = new Date(date)
-    if (deliveryType == "normal") {
+  getDeliveryDate() {
+    let date=new Date()
+    console.log(date)
+    let deliveryDate = date
+    console.log("deliver date",deliveryDate)
+    console.log("delivery type",this.deliveryType)
+    console.log("with this.weight",this.totalWeight(this.quantity))
+    console.log("without this.weight", this.totalWeight(this.quantity))
+    console.log("with this weekend",this.weekend(date, deliveryDate.setDate(deliveryDate.getDate() + 1)))
+    // console.log("without this",this.weekend(date, deliveryDate.setDate(deliveryDate.getDate() + 1)))
+
+    if (this.deliveryType == "normal") {
       if (this.totalWeight(this.quantity) >= 0 && this.totalWeight(this.quantity) <= 10) {
-        if (this.weekend(date, deliveryDate.setDate(deliveryDate.getDate() + 1))) {
-          deliveryDate.setDate(deliveryDate.getDate() + 2)
+        if (this.weekend(date, deliveryDate.setDate(date.getDate() + 1))) {
+          deliveryDate.setDate(date.getDate() + 2)
           return new Date(deliveryDate).toLocaleDateString()
         }
-        deliveryDate.setDate(deliveryDate.getDate() + 1)
-        return new Date(deliveryDate).toLocaleDateString()
+        console.log
+          (date.setDate(date.getDate() + 0))
+        return date
       }
       else if (this.totalWeight(this.quantity) > 10 && this.totalWeight(this.quantity) <= 20) {
         if (this.weekend(date, deliveryDate.setDate(deliveryDate.getDate() + 3))) {
@@ -67,7 +80,7 @@ class Product{
       }
     }
     
-    else if (deliveryType == "express") {
+    else if (this.deliveryType == "express") {
       if (this.totalWeight(this.quantity) >= 0 && this.totalWeight(this.quantity) <= 10) {
         return new Date().toLocaleDateString()
       }
