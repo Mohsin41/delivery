@@ -53,10 +53,11 @@ const store =new Vuex.Store ({
       }
     },
      async delivery({ state, dispatch }, productId) {
-    await axios.post(`/api/users/${state.user._id}/delivery`, {
+    const date=await axios.post(`/api/users/${state.user._id}/delivery`, {
         _id: productId,
-      })
-        window.alert(`hey you will got it on`)
+    }).data
+       console.log("the date is",date)
+        //window.alert(`hey you will got it on ${date.data}`)
        // await dispatch('fetchCourses')
     },
      
@@ -66,6 +67,9 @@ const store =new Vuex.Store ({
     },
     async register(store, user) {
       return axios.post('/api/account', user)
+    },
+    async addProduct(store, product) {
+      return axios.post('/api/products', product)
     },
     async logout({ commit }) {
       await axios.delete('/api/account/session')
