@@ -10,29 +10,32 @@ router.get('/', async (req, res) => {
 router.get('/initialize', async (req, res) => {
   const sample1 = new Product({
     name: 'sample1',
-    weight: 3,
-    deliveryType: 'express',
-  })
-  await sample1.save()
-  console.log("done")
-  const sample2 = new Product({
-    name: 'sample2',
     weight: 5,
     deliveryType: 'normal',
   })
-  await sample2.save() 
-  let a = sample2.getDeliveryDate(new Date())
-  let b = sample1.getDeliveryDate(new Date())
-  
+ await sample1.save()
+  const a=sample1.getDeliveryDate()
 
-  console.log(a)
-  console.log (b)
+  console.log(`the date is:${a}`)
+  
 
   res.sendStatus(204)
 })
+router.post('/',  async (req, res) => {
+  const productToAdd = {
+    name: req.body.name,
+    weight: req.body.weight,
+    image: req.body.image,
+    
+  }
+
+const addedProduct = await Product.create(productToAdd)
+  res.send(addedProduct)
+})
+
 router.post('/delivery', async (req, res) =>{
    const product = await Product.findById(req.params.Id)
-   await product.getDeliveryDate( new Date())
+   await product.getDeliveryDate(new Date())
 
   res.sendStatus(204) 
 })
