@@ -3,6 +3,7 @@
   #nav
     router-link(to="/") Login
     router-link(to="/register") Register
+    router-link(to="/product") AddProduct
     a(@click="doLogout" href="#") Logout
   router-view   
 </template>
@@ -15,16 +16,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #2a4e72;
 }
 #nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  align-items: center;
+  background: salmon;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  
+  &__header {
+    font-size: 2.5rem;
   }
 }
 </style>
