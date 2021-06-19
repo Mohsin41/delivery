@@ -30,6 +30,8 @@ export default {
 
   
     <div>
+      -->
+  
         <!-- Products catalogue -->
         <div class="container mx-auto px-4">
             <div class="flex mb-4">
