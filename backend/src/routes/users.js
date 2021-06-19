@@ -5,13 +5,7 @@ const router = express.Router()
 const User = require('../models/user.js')
 const Product = require('../models/product')
 
- const sample3 = new Product({
-    name: 'sample3',
-    weight: 3,
-    deliveryType: 'express',
-  })
-   sample3.save()
-
+ 
 
 router.get('/initialize', async (req, res) => {
   const Mohsin = new User({
@@ -33,8 +27,8 @@ router.post('/:Id/delivery', async (req, res) =>{
   const product = await Product.findById(req.body._id)
   //console.log("angel who will donate",angel)
 
-  console.log(await user.getDeliveryDate( product))
+  const date=await user.getDeliveryDate( product)
 
-  res.sendStatus(204) 
+  res.send(date) 
 })
 module.exports = router
