@@ -21,6 +21,7 @@ export default {
       await axios.post('/api/products',{name:this.name,
       weight:this.weight,
       image:this.image})
+      this.$swal("Good job!", "Successfully Added!", "success");
        this.$router.push('/home')
       } catch (e) {
         this.backendError = e.response.data.message
