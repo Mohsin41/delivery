@@ -20,9 +20,7 @@ export default {
     this.products=productRequest.data
     
   },
- /* methods: {
-    ...mapActions(['fetchProducts']),
-  },*/
+ 
 }
 </script>
 
