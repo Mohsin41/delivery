@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-class User{
+/*class User{
   getDeliveryDate(product) {
       let date=new Date()
     let deliveryDate = new Date(date)
@@ -68,7 +68,8 @@ class User{
     
       }
 }
-userSchema.loadClass(User)
+userSchema.loadClass(User) */
+
 userSchema.plugin(autopopulate)
 userSchema.plugin(passportLocalMongoose, {
    usernameField: 'email',

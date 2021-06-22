@@ -11,10 +11,12 @@ const productSchema = new mongoose.Schema(
       unique: true,
     },
     weight: { type: Number, },
+    //just for now to to check working of a function at backend 
     deliveryType: {
       type: String,
       default:"normal",
     },
+    //just for now to to check working of a function at backend 
     quantity: {
       type: Number,
       default:1,
@@ -23,7 +25,7 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-class Product{
+/*class Product{
   
   totalWeight(quantity) {
     return this.weight*quantity
@@ -104,9 +106,9 @@ class Product{
     }
     
       }
-    }
+    } 
   
-productSchema.loadClass(Product)
+productSchema.loadClass(Product)*/
 productSchema.plugin(autopopulate)
 
 module.exports = mongoose.model('Product', productSchema)
