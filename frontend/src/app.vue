@@ -1,10 +1,10 @@
 <template lang="pug">
 #app
   #nav
-    router-link(to="/") Login
-    router-link(to="/register") Register
-    router-link(to="/product") AddProduct
-    a(@click="doLogout" href="#") Logout
+    router-link(to="/home") Products
+ 
+    router-link(to="/product") AddProduct 
+    
   router-view   
 </template>
 
